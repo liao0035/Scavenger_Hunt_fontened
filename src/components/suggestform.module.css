@@ -1,0 +1,31 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+
+  label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: .5rem;
+
+  }
+}
+
+.input {
+
+  border: .25rem solid var(--color-text--white);
+  border-radius: .5rem;
+  background-color: var(--color-text--white);
+  color: var(--color-primary--dark);
+  padding-block: .25rem;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:valid {
+    border-color: var(--color-text--white);
+  }
+}

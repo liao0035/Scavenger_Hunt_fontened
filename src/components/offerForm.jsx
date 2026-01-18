@@ -1,0 +1,129 @@
+import styles from "./offerForm.module.css";
+import { useState, useEffect } from "react";
+// Context
+import { useAuth } from "../context/auth.context.jsx";
+
+/** Offer form component */
+export default function OfferForm() {
+  // makes sure that when we're in development, we're using the local backend
+  const BASE_URL = import.meta.env.DEV
+    ? "http://localhost:4000"
+    : "https://w2025-final-backend-58fl.onrender.com";
+
+  const { token, location, getMyLocation } = useAuth();
+  const [data, setData] = useState({ title: "", description: "" });
+  const [files, setFiles] = useState([]);
+
+  useEffect(() => {
+    if (location === null) {
+      getMyLocation();
+    }
+  }, [location]);
+
+  const handleFileChange = (ev) => {
+    const crapFiles = Array.from(ev.target.files); //takes each file and puts it into an array
+    setFiles(crapFiles);
+  };
+
+  const handleSubmit = async (ev) => {
+    ev.preventDefault();
+
+    const formData = new FormData(); //builds new form data object
+    formData.append("title", data.title);
+    formData.append("description", data.description);
+    formData.append(
+      "location",
+      JSON.stringify({
+        type: "Point",
+        coordinates: location,
+      }),
+    );
+    files.forEach((file) => {
+      formData.append("images", file);
+    }); // maps through the (image) files and appends each one to the form data
+
+    try {
+      //send req
+      const res = await fetch(`${BASE_URL}/api/crap`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      });
+
+      if (!res.ok) throw new Error("Something went wrong!!");
+      const resData = await res.json();
+      window.location.href = `/crap/${resData.data._id}`; //navigate to the newly created crap page
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return (
+    <>
+      <div className={styles.formControl}>
+        <h2>Create new Listing</h2>
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <label htmlFor="title">Title:</label>
+          <input
+            required
+            minLength={3}
+            maxLength={255}
+            type="text"
+            name="title"
+            id="title"
+            value={data.title}
+            onChange={(ev) =>
+              // sets the data for title into our state variable
+              // it spreads the already existing data and only overrites the title with whatever the user is typing
+              setData({
+                ...data,
+                title: ev.target.value,
+              })
+            }
+          />
+          {/* as the user types in the input, we set the value of the specific input in setData */}
+          <label htmlFor="description">Description:</label>
+          <textarea
+            required
+            minLength={3}
+            maxLength={255}
+            name="description"
+            id="description"
+            value={data.description}
+            onChange={(ev) =>
+              setData({
+                ...data,
+                description: ev.target.value,
+              })
+            }
+          ></textarea>
+          <div>
+            <label htmlFor="image" className={styles.btn}>
+              Upload image
+            </label>
+          </div>
+          <input
+            required
+            type="file"
+            name="images"
+            id="image"
+            accept="image/*"
+            multiple
+            onChange={handleFileChange}
+            className={styles.hiddenInput}
+          />
+
+          <ul>
+            {files.map((file, idx) => (
+              <li key={idx}>{file.name}</li>
+            ))}
+          </ul>
+
+          <button>Offer your crap!</button>
+        </form>
+      </div>
+    </>
+  );
+}

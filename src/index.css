@@ -1,0 +1,84 @@
+/* @import 'tailwindcss'; */
+
+:root {
+  --color-text--white: #fff;
+  --color-text--light: #FFF;
+  --color-text--dark: #26211C;
+
+  --color-primary: #1E2E47;
+  --color-primary--light: #333a46;
+  --color-primary--dark: #221C1C;
+
+  --color-secondary: #dcc5a0;
+  --color-secondary--light: #f1e8da;
+  --color-secondary--dark: #8C6A3B;
+
+  --color-accent: #8EA087;
+
+  /* Fonts */
+  --font-primary: "Playfair";
+
+  font-family: var(--font-primary), sans-serif;
+  color-scheme: light dark;
+  color: var(--color-text-dark);
+
+  /* background-color: var(--color-secondary); */
+
+
+  /* Standardization */
+  --transition: .2s;
+  --shadow: 0 0.25rem 0.75rem #0004;
+  --shadow--large: 0 0.5rem 1.5rem #0004;
+  --shadow--subtle: 0 0.125rem 0.5rem #0002;
+  --radius: 0.5em;
+
+  color-scheme: light dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+}
+
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  line-height: 1.5;
+}
+
+ul,
+li {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+
+  &:where(:hover, :focus-visible) {
+    color: var(--color-accent);
+  }
+}
+
+/* button {
+  padding-inline: 2rem;
+  padding-block: 0.3rem;
+  background-color: var(--color-primary--dark);
+  border: .125rem solid var(--color-primary--dark);
+  border-radius: 1rem;
+  color: var(--color-text--white);
+
+  &:where(:hover, :focus-visible) {
+    background-color: var(--color-primary--light);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+} */

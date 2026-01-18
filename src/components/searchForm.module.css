@@ -1,0 +1,69 @@
+.form {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  /* flex-direction: column; */
+  margin-inline: 2rem;
+  /* padding-block: 2rem; */
+  gap: 1.5rem;
+  /* background-color: aliceblue; */
+
+}
+
+.img {
+  border-radius: 50%;
+  border: .2rem solid var(--color-text--white);
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.input {
+  border: .25rem solid var(--color-text--white);
+  border-radius: .25rem;
+  background-color: var(--color-secondary--light);
+  color: var(--color-primary--dark);
+  padding-block: .5rem;
+  width: 100%;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:valid {
+    border-color: var(--color-primary);
+  }
+}
+
+.cardList {
+  /* display: flex; */
+  margin: 2rem;
+  gap: 1.5rem;
+
+  @media only screen and (min-width:45rem) {
+    display: grid;
+    grid-template-columns: repeat(2, 2fr);
+  }
+
+  @media only screen and (min-width:60rem) {
+    display: grid;
+    grid-template-columns: repeat(2, 2fr);
+  }
+}
+
+.cardItem {
+  display: flex;
+  margin-block-end: 2rem;
+  flex: 1 1 15rem;
+  container-type: inline-size;
+
+  transition: transform 0.3s ease;
+
+  &:where(:hover, :focus-visible) {
+    transform: translateY(-1rem);
+  }
+
+}
+
+.p {
+  text-align: center;
+}
