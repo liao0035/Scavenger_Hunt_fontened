@@ -1,7 +1,11 @@
+import axios from "axios";
 import styles from "./offerForm.module.css";
 import { useState, useEffect } from "react";
 // Context
 import { useAuth } from "../context/auth.context.jsx";
+// img
+import logo from "../assets/logoOnly.svg";
+import { blue } from "@mui/material/colors";
 
 /** Offer form component */
 export default function OfferForm() {
@@ -13,6 +17,8 @@ export default function OfferForm() {
   const { token, location, getMyLocation } = useAuth();
   const [data, setData] = useState({ title: "", description: "" });
   const [files, setFiles] = useState([]);
+  const [UploadProgress, setUploadProgress] = useState(0);
+  const [isUploading, setIsUploading] = useState(false);
 
   useEffect(() => {
     if (location === null) {
@@ -27,6 +33,8 @@ export default function OfferForm() {
 
   const handleSubmit = async (ev) => {
     ev.preventDefault();
+    setIsUploading(true);
+    setUploadProgress(0);
 
     const formData = new FormData(); //builds new form data object
     formData.append("title", data.title);
@@ -43,21 +51,37 @@ export default function OfferForm() {
     }); // maps through the (image) files and appends each one to the form data
 
     try {
-      //send req
-      const res = await fetch(`${BASE_URL}/api/crap`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
+      const res = await axios.post(`${BASE_URL}/api/crap`, formData, {
+        headers: { Authorization: `Bearer ${token}` },
+        onUploadProgress: (ProgressEvent) => {
+          const percent = Math.round(
+            (ProgressEvent.loaded * 100) / ProgressEvent.total,
+          );
+          setUploadProgress(percent);
         },
-        body: formData,
       });
-
-      if (!res.ok) throw new Error("Something went wrong!!");
-      const resData = await res.json();
-      window.location.href = `/crap/${resData.data._id}`; //navigate to the newly created crap page
+      window.location.href = `/crap/${res.data.data._id}`;
     } catch (error) {
-      console.log(error);
+      console.error(error);
+      setIsUploading(false);
     }
+
+    // try {
+    //   //send req
+    //   const res = await fetch(`${BASE_URL}/api/crap`, {
+    //     method: "POST",
+    //     headers: {
+    //       Authorization: `Bearer ${token}`,
+    //     },
+    //     body: formData,
+    //   });
+
+    //   if (!res.ok) throw new Error("Something went wrong!!");
+    //   const resData = await res.json();
+    //   window.location.href = `/crap/${resData.data._id}`; //navigate to the newly created crap page
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
 
   return (
@@ -65,7 +89,7 @@ export default function OfferForm() {
       <div className={styles.formControl}>
         <h2>Create new Listing</h2>
         <form className={styles.form} onSubmit={handleSubmit}>
-          <label htmlFor="title">Title:</label>
+          <label htmlFor="title">Name:</label>
           <input
             required
             minLength={3}
@@ -99,11 +123,10 @@ export default function OfferForm() {
               })
             }
           ></textarea>
-          <div>
-            <label htmlFor="image" className={styles.btn}>
-              Upload image
-            </label>
-          </div>
+
+          <label htmlFor="image" className="btn">
+            Upload image
+          </label>
           <input
             required
             type="file"
@@ -114,14 +137,30 @@ export default function OfferForm() {
             onChange={handleFileChange}
             className={styles.hiddenInput}
           />
+          <button disabled={isUploading}>
+            {isUploading ? "Uploading..." : "Offer your list"}
+          </button>
 
-          <ul>
-            {files.map((file, idx) => (
-              <li key={idx}>{file.name}</li>
-            ))}
-          </ul>
+          {files.length > 0 && (
+            <ul>
+              {files.map((file, idx) => (
+                <li key={idx}>
+                  <strong>{file.name}</strong> is attached
+                </li>
+              ))}
+            </ul>
+          )}
 
-          <button>Offer your crap!</button>
+          {isUploading && (
+            <>
+              <div style={{ color: blue }}>uploading: {UploadProgress}%</div>
+              <progress
+                value={UploadProgress}
+                max="100"
+                style={{ width: "100%" }}
+              />
+            </>
+          )}
         </form>
       </div>
     </>

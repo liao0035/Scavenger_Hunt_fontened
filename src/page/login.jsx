@@ -25,14 +25,10 @@ export default function Login() {
       {/* if logged out show this */}
       {!isLogin && (
         <>
-          <h2>Welcome to Scavenger Hunt</h2>
-          <p>
-            Looking to get rid of your crap? <span>Great!</span>
-          </p>
-          <p>
-            Wanna buy some crap? <span>Even better!</span>
-          </p>
-          <p>Or click Login on the top right!</p>
+          <h2>Welcome to ScavengerHunt</h2>
+          <p>On the Hunt for a particular item?</p>
+          <p>You came to the right place!</p>
+          <p>Create or view listings to buy and sell whatever</p>
         </>
       )}
       {isLogin && user && (

@@ -6,7 +6,7 @@
   --color-text--dark: #26211C;
 
   --color-primary: #1E2E47;
-  --color-primary--light: #333a46;
+  --color-primary--light: #6b788e;
   --color-primary--dark: #221C1C;
 
   --color-secondary: #dcc5a0;
@@ -17,13 +17,9 @@
 
   /* Fonts */
   --font-primary: "Playfair";
-
   font-family: var(--font-primary), sans-serif;
   color-scheme: light dark;
   color: var(--color-text-dark);
-
-  /* background-color: var(--color-secondary); */
-
 
   /* Standardization */
   --transition: .2s;
@@ -68,17 +64,33 @@ a {
   }
 }
 
-/* button {
-  padding-inline: 2rem;
+textarea,
+input {
+  font-family: inherit;
+  font-size: clamp(1rem, 5cqw, 1.2rem);
+}
+
+button,
+.btn {
+  font-family: inherit;
+  font-size: clamp(.9rem, 5cqw, 1rem);
+  line-height: 1.5;
+  display: flex;
+  justify-content: center;
+  padding-inline: .5rem;
   padding-block: 0.3rem;
-  background-color: var(--color-primary--dark);
-  border: .125rem solid var(--color-primary--dark);
+  background-color: var(--color-primary);
+  border: .125rem solid var(--color-primary);
   border-radius: 1rem;
   color: var(--color-text--white);
 
+
+
   &:where(:hover, :focus-visible) {
-    background-color: var(--color-primary--light);
-    border-color: var(--color-primary);
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
     color: var(--color-primary);
   }
-} */
+
+
+}

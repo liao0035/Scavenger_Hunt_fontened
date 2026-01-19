@@ -3,11 +3,13 @@ a {
 }
 
 .card {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+    display: grid;
+    /* flex-direction: column; */
+    /* width: 100%; */
     border-radius: 1rem;
     box-shadow: var(--shadow);
+    overflow: hidden;
+
 }
 
 .img {
@@ -17,9 +19,9 @@ a {
         width: 100%;
         aspect-ratio: 1/1;
         object-fit: cover;
-        border-radius: 1rem 1rem 0 0;
+        /* border-radius: 1rem 1rem 0 0; */
         box-shadow: var(--shadow);
-        overflow: hidden;
+        /* overflow: hidden; */
     }
 
 }
@@ -55,7 +57,6 @@ a {
 
 @container(min-width: 30em) {
     .card {
-        display: grid;
         grid-template-columns: repeat(2, 1fr);
     }
 

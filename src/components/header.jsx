@@ -18,7 +18,7 @@ export default function Header() {
         <NavLink to="/">
           <img src={logoOnly} />
           <div className={styles.logo}>
-            <h1 className={styles.logo}>Scavenger Hunt</h1>
+            <h1 className={styles.logo}>ScavengerHunt</h1>
             <p className={styles.logo}>Used Item Market Place</p>
           </div>
         </NavLink>
