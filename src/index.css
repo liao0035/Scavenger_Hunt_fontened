@@ -1,13 +1,14 @@
 /* @import 'tailwindcss'; */
-
+/* CSS Reset */
 :root {
   --color-text--white: #fff;
   --color-text--light: #FFF;
   --color-text--dark: #26211C;
+  --color-grey: #4848488e;
 
   --color-primary: #1E2E47;
-  --color-primary--light: #6b788e;
-  --color-primary--dark: #221C1C;
+  --color-primary--light: #354359;
+  --color-primary--dark: #05152E;
 
   --color-secondary: #dcc5a0;
   --color-secondary--light: #f1e8da;
@@ -43,6 +44,70 @@ html {
   line-height: 1.5;
 }
 
+/* Remove default margin in favour of better control in authored CSS */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote,
+ol,
+ul,
+dl,
+dd {
+  margin: 0 0 1.5rem;
+}
+
+/* Set shorter line heights on headings and interactive elements */
+h1,
+h2,
+h3,
+h4,
+button,
+input,
+label {
+  line-height: 1.1;
+}
+
+/* Balance text wrapping on headings */
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(1.802rem, 5cqi, 2.5rem);
+}
+
+h2 {
+  font-size: clamp(1.602rem, 5cqi, 2rem);
+}
+
+h3 {
+  font-size: clamp(1.424rem, 5cqi, 1.5rem);
+}
+
+h4 {
+  font-size: clamp(1.266rem, 5cqi, 1rem);
+}
+
+h5 {
+  font-size: clamp(1.125rem, 5cqi, 1.25rem);
+}
+
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+
 ul,
 li {
   padding: 0;
@@ -55,13 +120,16 @@ body {
   margin: 0;
 }
 
+/* A elements that don't have a class get default styles */
 a {
+  text-decoration-skip-ink: auto;
   color: var(--color-primary);
   text-decoration: none;
+}
 
-  &:where(:hover, :focus-visible) {
-    color: var(--color-accent);
-  }
+a:hover,
+a:focus-visible {
+  color: var(--color-accent);
 }
 
 textarea,
@@ -70,6 +138,48 @@ input {
   font-size: clamp(1rem, 5cqw, 1.2rem);
 }
 
+/* Make images easier to work with */
+img,
+picture,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+svg {
+  fill: currentColor;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Update default button cursor to indicate interactivity */
+button {
+  cursor: pointer;
+}
+
+/* Make sure textareas without a rows attribute are not tiny */
+textarea:not([rows]) {
+  min-height: 10em;
+}
+
+/* Anything that has been anchored to should have extra scroll margin */
+:target {
+  scroll-margin-block: 3rem;
+}
+
+/* This project only */
+
 button,
 .btn {
   font-family: inherit;
@@ -77,20 +187,17 @@ button,
   line-height: 1.5;
   display: flex;
   justify-content: center;
-  padding-inline: .5rem;
+  padding-inline: 1rem;
   padding-block: 0.3rem;
-  background-color: var(--color-primary);
-  border: .125rem solid var(--color-primary);
+  background-color: var(--color-primary--light);
+  border: .125rem solid var(--color-primary--light);
   border-radius: 1rem;
   color: var(--color-text--white);
 
 
-
   &:where(:hover, :focus-visible) {
-    background-color: var(--color-accent);
-    border-color: var(--color-accent);
-    color: var(--color-primary);
+    background-color: var(--color-primary--dark);
+    border-color: var(--color-primary--dark);
+    color: var(--color-text--white);
   }
-
-
 }

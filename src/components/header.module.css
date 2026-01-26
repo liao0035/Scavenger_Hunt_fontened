@@ -4,6 +4,14 @@
   color: var(--color-primary);
   container-type: inline-size;
 
+  &.loggedOut {
+    @media only screen and (min-width: 45em) {
+
+      padding-block-start: 1.5rem;
+
+    }
+  }
+
   .container {
     display: flex;
     flex-direction: column;
@@ -68,17 +76,30 @@
     }
   }
 
-
-
-
   .linkGroup {
-
-
     @media only screen and (min-width: 45em) {
       display: flex;
 
     }
   }
 
+  .liGroup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+  }
+
+  .img {
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
 }

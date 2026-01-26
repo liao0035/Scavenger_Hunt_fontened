@@ -100,7 +100,7 @@ export default function OfferForm() {
             value={data.title}
             onChange={(ev) =>
               // sets the data for title into our state variable
-              // it spreads the already existing data and only overrites the title with whatever the user is typing
+              // it spreads the already existing data and only overrides the title with whatever the user is typing
               setData({
                 ...data,
                 title: ev.target.value,

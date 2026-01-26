@@ -7,13 +7,16 @@ import { useAuth } from "../context/auth.context";
 import logoOnly from "../assets/logoOnly.svg";
 // loginBtn
 import LoginBtn from "../components/loginbtn.jsx";
+//  searchForm
+import SearchForm from "../components/searchForm.jsx";
 
 /** Header component for entire website */
 export default function Header() {
-  const { isLogin } = useAuth();
+  const { isLogin, user } = useAuth();
 
   return (
-    <header className={styles.nav}>
+    <header className={`${styles.nav} ${!isLogin ? styles.loggedOut : ""}`}>
+      {/* <header className={styles.nav}> */}
       <div className={styles.container}>
         <NavLink to="/">
           <img src={logoOnly} />
@@ -23,10 +26,13 @@ export default function Header() {
           </div>
         </NavLink>
 
-        <nav className={styles.navBar}>
-          <ul className={styles.linkGroup}>
-            {isLogin && (
+        {isLogin && (
+          <nav className={styles.navBar}>
+            <ul className={styles.linkGroup}>
               <>
+                <li className={styles.search}>
+                  <SearchForm />
+                </li>
                 <li>
                   {" "}
                   <NavLink to="/" className={styles.link}>
@@ -36,7 +42,7 @@ export default function Header() {
                 <li>
                   {" "}
                   <NavLink to="/mine" className={styles.link}>
-                    My List
+                    Your Listings
                   </NavLink>
                 </li>
                 <li>
@@ -45,17 +51,23 @@ export default function Header() {
                     Create Listing
                   </NavLink>
                 </li>
+
+                <li>
+                  <div className={`${styles.liGroup} ${styles.link}`}>
+                    <LoginBtn />
+                    {user?.avatar && (
+                      <img
+                        src={user.avatar}
+                        className={styles.img}
+                        referrerPolicy="no-referrer"
+                      />
+                    )}
+                  </div>
+                </li>
               </>
-            )}
-            <li>
-              {" "}
-              {/* <NavLink to="/login" className={styles.link}>
-                {isLogin ? "Log out" : "Log in"}
-              </NavLink> */}
-              <LoginBtn className={styles.link} />
-            </li>
-          </ul>
-        </nav>
+            </ul>
+          </nav>
+        )}
       </div>
     </header>
   );

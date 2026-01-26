@@ -29,8 +29,9 @@ a {
 .cardInfo {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+
     flex-grow: 2;
-    gap: 1.2rem;
     padding: 2rem;
     border-radius: 0 0 1rem 1rem;
     background-color: #fff;
@@ -39,20 +40,15 @@ a {
         color: var(--color-text--dark);
         text-align: center;
         background-color: var(--color-accent);
-        padding: 0.25rem;
-        border-radius: 1rem;
+        padding: 0.5rem;
+
     }
 
     .cardHeading span {
         font-weight: 700;
     }
 
-    .msg {
-        text-align: center;
-        border: 0.125rem dotted var(--color-secondary);
-        padding: 0.25rem;
-        margin-top: auto;
-    }
+    .msg {}
 }
 
 @container(min-width: 30em) {

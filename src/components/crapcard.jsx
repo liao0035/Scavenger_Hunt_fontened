@@ -17,8 +17,8 @@ export default function CrapCard({ crap }) {
 
   // checks to see if crap belongs to buyer or seller
   isOwner
-    ? (msg = `This is ${user.name}'s crap!!!`)
-    : (msg = "This is NOT your crap!!!");
+    ? (msg = `${user.name}'s list!!!`)
+    : (msg = "This is NOT your list!!!");
 
   return !id ? (
     <NavLink to={`/crap/${crap._id}`}>

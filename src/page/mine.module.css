@@ -8,7 +8,7 @@
   font-size: 1.5rem;
   color: var(--color-primary);
   background-color: var(--color-secondary--light);
-  border-radius: 1.5rem;
+  /* border-radius: 1.5rem; */
   margin: 2rem;
   padding: 0.5rem;
 }

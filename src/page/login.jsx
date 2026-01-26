@@ -29,6 +29,7 @@ export default function Login() {
           <p>On the Hunt for a particular item?</p>
           <p>You came to the right place!</p>
           <p>Create or view listings to buy and sell whatever</p>
+          <LoginBtn className="btn" />
         </>
       )}
       {isLogin && user && (
@@ -36,7 +37,6 @@ export default function Login() {
           <p>Welcome back, {user.name}</p>
         </>
       )}
-      {/* <LoginBtn /> */}
     </main>
   );
 }
