@@ -19,10 +19,10 @@ export default function Header() {
       {/* <header className={styles.nav}> */}
       <div className={styles.container}>
         <NavLink to="/">
-          <img src={logoOnly} />
+          <img className={styles.logo} src={logoOnly} />
           <div className={styles.logo}>
             <h1 className={styles.logo}>ScavengerHunt</h1>
-            <p className={styles.logo}>Used Item Market Place</p>
+            <p className={styles.logo}>Used Item Marketplace</p>
           </div>
         </NavLink>
 
@@ -54,7 +54,6 @@ export default function Header() {
 
                 <li>
                   <div className={`${styles.liGroup} ${styles.link}`}>
-                    <LoginBtn />
                     {user?.avatar && (
                       <img
                         src={user.avatar}
@@ -62,6 +61,7 @@ export default function Header() {
                         referrerPolicy="no-referrer"
                       />
                     )}
+                    <LoginBtn />
                   </div>
                 </li>
               </>
