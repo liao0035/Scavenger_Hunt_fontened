@@ -14,18 +14,19 @@
 }
 
 .input {
-
-  border: .25rem solid var(--color-text--white);
-  border-radius: .5rem;
+  border: .1rem solid var(--color-grey);
+  border-radius: .25rem;
   background-color: var(--color-text--white);
   color: var(--color-primary--dark);
-  padding-block: .25rem;
+  padding-block: .8rem;
+  padding-inline: .5rem;
 
   &:focus {
-    outline: none;
+    outline: var(--color-accent);
+    border: .1rem solid var(--color-grey);
   }
 
   &:valid {
-    border-color: var(--color-text--white);
+    border-color: var(--color-accent);
   }
 }

@@ -75,9 +75,9 @@ function AuthProvider(props) {
       (err) => {
         console.log("Did not get location... setting location to [0,0]");
         setLocation([0, 0]); //set default location if user denies location permission
-        console.log(err)
+        console.log(err);
       },
-      options
+      options,
     );
   }
   return (

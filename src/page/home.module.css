@@ -28,3 +28,9 @@
   }
 
 }
+
+.msg {
+  text-align: center;
+  margin-block: 2rem;
+  color: var(--color-secondary--dark);
+}

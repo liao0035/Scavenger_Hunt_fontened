@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 // Context
 import { useAuth } from "../context/auth.context.jsx";
 // img
-import logo from "../assets/logoOnly.svg";
 import { blue } from "@mui/material/colors";
 
 /** Offer form component */
@@ -27,18 +26,25 @@ export default function OfferForm() {
   }, [location]);
 
   const handleFileChange = (ev) => {
-    const crapFiles = Array.from(ev.target.files); //takes each file and puts it into an array
-    setFiles(crapFiles);
+    const listingFiles = Array.from(ev.target.files); //takes each file and puts it into an array
+    setFiles(listingFiles);
   };
 
   const handleSubmit = async (ev) => {
     ev.preventDefault();
+    const formattedName =
+      data.title.charAt(0).toUpperCase() + data.title.slice(1).toLowerCase();
+    setIsUploading(true);
+    setUploadProgress(0);
+    const formattedDescription =
+      data.description.charAt(0).toUpperCase() +
+      data.description.slice(1).toLowerCase();
     setIsUploading(true);
     setUploadProgress(0);
 
     const formData = new FormData(); //builds new form data object
-    formData.append("title", data.title);
-    formData.append("description", data.description);
+    formData.append("title", formattedName);
+    formData.append("description", formattedDescription);
     formData.append(
       "location",
       JSON.stringify({
@@ -51,7 +57,7 @@ export default function OfferForm() {
     }); // maps through the (image) files and appends each one to the form data
 
     try {
-      const res = await axios.post(`${BASE_URL}/api/crap`, formData, {
+      const res = await axios.post(`${BASE_URL}/api/listing`, formData, {
         headers: { Authorization: `Bearer ${token}` },
         onUploadProgress: (ProgressEvent) => {
           const percent = Math.round(
@@ -60,28 +66,12 @@ export default function OfferForm() {
           setUploadProgress(percent);
         },
       });
-      window.location.href = `/crap/${res.data.data._id}`;
+      console.log("create res", res.data);
+      window.location.href = `/listing/${res.data.data._id}`;
     } catch (error) {
       console.error(error);
       setIsUploading(false);
     }
-
-    // try {
-    //   //send req
-    //   const res = await fetch(`${BASE_URL}/api/crap`, {
-    //     method: "POST",
-    //     headers: {
-    //       Authorization: `Bearer ${token}`,
-    //     },
-    //     body: formData,
-    //   });
-
-    //   if (!res.ok) throw new Error("Something went wrong!!");
-    //   const resData = await res.json();
-    //   window.location.href = `/crap/${resData.data._id}`; //navigate to the newly created crap page
-    // } catch (error) {
-    //   console.log(error);
-    // }
   };
 
   return (
@@ -127,6 +117,7 @@ export default function OfferForm() {
           <label htmlFor="image" className="btn">
             Upload image
           </label>
+
           <input
             required
             type="file"
@@ -153,7 +144,9 @@ export default function OfferForm() {
 
           {isUploading && (
             <>
-              <div style={{ color: blue }}>uploading: {UploadProgress}%</div>
+              <div style={{ color: blue[500] }}>
+                uploading: {UploadProgress}%
+              </div>
               <progress
                 value={UploadProgress}
                 max="100"

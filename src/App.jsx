@@ -10,7 +10,7 @@ function App() {
       <Header />
       <Outlet />
 
-      {/* Outlet load home, about, searchCrap, offerCarp, myCrap    */}
+      {/* Outlet load home, about, searchListing, offerCarp, myListing    */}
     </>
   );
 }

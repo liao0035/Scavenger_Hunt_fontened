@@ -1,20 +1,20 @@
-import styles from "./crapid.module.css";
+import styles from "./listingid.module.css";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 // Context
-import { useCrap } from "../context/crap.provider.jsx";
+import { useListing } from "../context/listing.provider.jsx";
 
 // Components
 import Loader from "../components/loader.jsx";
-import CrapCard from "../components/crapcard.jsx";
+import ListingCard from "../components/listingcard.jsx";
 
-export default function CrapId() {
+export default function ListingId() {
   const { id } = useParams();
-  const { singleData, fetchCrapById, loading, error } = useCrap();
+  const { singleData, fetchListingById, loading, error } = useListing();
 
   useEffect(() => {
     if (id) {
-      fetchCrapById(id);
+      fetchListingById(id);
     }
   }, [id]);
 
@@ -31,7 +31,7 @@ export default function CrapId() {
       <ul className={styles.cardList}>
         {" "}
         <li className={styles.cardItem}>
-          <CrapCard crap={singleData} />
+          <ListingCard listing={singleData} />
         </li>
       </ul>
     </>

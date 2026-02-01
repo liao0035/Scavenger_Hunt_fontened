@@ -1,16 +1,16 @@
 import styles from "./statebtn.module.css";
 // Context
 import { useAuth } from "../context/auth.context";
-import { useCrap } from "../context/crap.provider.jsx";
+import { useListing } from "../context/listing.provider.jsx";
 
 /** Component that handles the user/buyer flow (as a button)
- * this is put inside our crap card when we are in the crap details
+ * this is put inside our listing card when we are in the listing details
  */
-export default function StateBtn({ crap, onActionChange }) {
+export default function StateBtn({ listing, onActionChange }) {
   const { user } = useAuth();
-  const { sendPostData } = useCrap();
-  const status = crap.status;
-  const isOwner = Boolean(crap.owner._id === user.id); //compares the crap owner the current logged-in user to see if user is a buyer or seller
+  const { sendPostData } = useListing();
+  const status = listing.status;
+  const isOwner = Boolean(listing.owner._id === user.id); //compares the listing owner the current logged-in user to see if user is a buyer or seller
 
   function handleClick(action) {
     if (onActionChange) {
@@ -21,11 +21,11 @@ export default function StateBtn({ crap, onActionChange }) {
     if (status === "INTERESTED" && isOwner) {
       return;
     } else {
-      sendPostData(crap._id, null, action);
+      sendPostData(listing._id, null, action);
     }
   }
 
-  // uses a switch statement that checks the status of the crap first THEN if user is a buyer or seller
+  // uses a switch statement that checks the status of the listing first THEN if user is a buyer or seller
   // when user clicks the button, we pass in a string as our action, which triggers handleClick.
   // we then pass in action to onActionChange, which sets the action in our parent component (action is used as the endpoint to our API req)
   function renderButtons() {
@@ -56,14 +56,14 @@ export default function StateBtn({ crap, onActionChange }) {
             Cancel Pickup
           </button>
         ) : (
-          <>
+          <div className={styles.btnGroup}>
             <button type="submit" onClick={() => handleClick("AGREE")}>
-              Agree to Pickup Time
+              Agree Pickup Time
             </button>
             <button type="submit" onClick={() => handleClick("DISAGREE")}>
-              Request a Different Pickup Time
+              Request a Different Time
             </button>
-          </>
+          </div>
         );
       case "AGREED":
         return isOwner ? (

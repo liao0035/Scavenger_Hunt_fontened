@@ -1,9 +1,9 @@
 import { createContext, useContext, useState } from "react";
 import { useAuth } from "./auth.context.jsx";
 
-const CrapContext = createContext();
+const ListingContext = createContext();
 
-function CrapProvider({ children }) {
+function ListingProvider({ children }) {
   const { token } = useAuth();
   const [query, setQuery] = useState("");
   const [allData, setAllData] = useState([]);
@@ -11,24 +11,27 @@ function CrapProvider({ children }) {
   const [singleData, setSingleData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [myCrapList, setMyCrapList] = useState({});
+  const [myListingList, setMyListingList] = useState({});
   const [hasSearch, setSearch] = useState(false);
 
   const BASE_URL = import.meta.env.DEV
     ? "http://localhost:4000"
     : "https://w2025-final-backend-58fl.onrender.com";
 
-  // Search Crap (all, or by query)
-  function fetchAllCrap() {
+  // Search Listing (all, or by query)
+  function fetchAllListing() {
     if (!token) return;
     setLoading(true);
-    fetch(query ? `${BASE_URL}/api/crap/?q=${query}` : `${BASE_URL}/api/crap`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+    fetch(
+      query ? `${BASE_URL}/api/listing/?q=${query}` : `${BASE_URL}/api/listing`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
       },
-    })
+    )
       .then((res) => {
         if (!res.ok) {
           throw new Error(`Oops! Something bad happened!: ${res.status}`);
@@ -48,11 +51,11 @@ function CrapProvider({ children }) {
       });
   }
 
-  // Fetch my crap (mine)
-  function fetchMineCrap() {
+  // Fetch my listing (mine)
+  function fetchMineListing() {
     if (!token) return;
     setLoading(true);
-    fetch(`${BASE_URL}/api/crap/mine`, {
+    fetch(`${BASE_URL}/api/listing/mine`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -73,11 +76,11 @@ function CrapProvider({ children }) {
       });
   }
 
-  // Fetch crap  by id
-  function fetchCrapById(id) {
+  // Fetch listing  by id
+  function fetchListingById(id) {
     if (!token) return;
     setLoading(true);
-    fetch(`${BASE_URL}/api/crap/${id}`, {
+    fetch(`${BASE_URL}/api/listing/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -100,7 +103,7 @@ function CrapProvider({ children }) {
   function sendPostData(id, formData, action) {
     if (!token) return;
     setLoading(true);
-    fetch(`${BASE_URL}/api/crap/${id}/${action}`, {
+    fetch(`${BASE_URL}/api/listing/${id}/${action}`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -114,7 +117,7 @@ function CrapProvider({ children }) {
       .then((res) => {
         setLoading(false);
         setSingleData(res.data);
-        fetchCrapById(id);
+        fetchListingById(id);
         return res;
       })
       .catch((err) => {
@@ -129,17 +132,17 @@ function CrapProvider({ children }) {
     setQuery(newQuery);
   }
 
-  // Creates section for my crap page
+  // Creates section for my listing page
   function createSections(arr) {
-    let section = arr.reduce((existing, crap) => {
-      if (crap.status in existing) {
-        existing[crap.status].push(crap);
+    let section = arr.reduce((existing, listing) => {
+      if (listing.status in existing) {
+        existing[listing.status].push(listing);
       } else {
-        existing[crap.status] = [crap];
+        existing[listing.status] = [listing];
       }
       return existing;
     }, {});
-    setMyCrapList(section);
+    setMyListingList(section);
   }
 
   const value = {
@@ -148,22 +151,24 @@ function CrapProvider({ children }) {
     loading,
     error,
     singleData,
-    myCrapList,
+    myListingList,
     hasSearch,
-    fetchAllCrap,
-    fetchMineCrap,
-    fetchCrapById,
+    fetchAllListing,
+    fetchMineListing,
+    fetchListingById,
     updateQuery,
     createSections,
     sendPostData,
   };
-  return <CrapContext.Provider value={value}>{children}</CrapContext.Provider>;
+  return (
+    <ListingContext.Provider value={value}>{children}</ListingContext.Provider>
+  );
 }
 
-function useCrap() {
-  const context = useContext(CrapContext);
+function useListing() {
+  const context = useContext(ListingContext);
   if (!context) throw new Error("Hook being used outside of Provider");
 
   return context;
 }
-export { useCrap, CrapProvider };
+export { useListing, ListingProvider };

@@ -4,12 +4,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
 import App from "./App.jsx";
 // Provider
-import { CrapProvider } from "./context/crap.provider.jsx";
+import { ListingProvider } from "./context/listing.provider.jsx";
 import { AuthProvider } from "./context/auth.context.jsx";
 // pages
 import Home from "./page/home.jsx";
 import Login from "./page/login.jsx";
-import CrapId from "./page/crapid.jsx";
+import ListingId from "./page/listingid.jsx";
 import Mine from "./page/mine.jsx";
 import Offer from "./page/offer.jsx";
 import NotFound from "./page/notfound.jsx";
@@ -19,7 +19,7 @@ import ProtectedRoute from "./components/protectroute.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <AuthProvider>
-      <CrapProvider>
+      <ListingProvider>
         <BrowserRouter>
           <Routes>
             {/* path="/" this is the frame for entire project; like nav + footer */}
@@ -35,10 +35,10 @@ createRoot(document.getElementById("root")).render(
               />
               {/* /login =>  <App> + <Login /> */}
               <Route
-                path="crap/:id"
+                path="listing/:id"
                 element={
                   <ProtectedRoute>
-                    <CrapId />
+                    <ListingId />
                   </ProtectedRoute>
                 }
               />
@@ -64,7 +64,7 @@ createRoot(document.getElementById("root")).render(
             </Route>
           </Routes>
         </BrowserRouter>
-      </CrapProvider>
+      </ListingProvider>
     </AuthProvider>
-  </StrictMode>
+  </StrictMode>,
 );

@@ -2,7 +2,7 @@ import styles from "./suggestform.module.css";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 // Context
-import { useCrap } from "../context/crap.provider";
+import { useListing } from "../context/listing.provider";
 // Components
 import BasicDatePicker from "../components/datepicker";
 import dayjs from "dayjs";
@@ -11,9 +11,9 @@ import StateBtn from "./statebtn";
 /** Form that sets a seller's suggestion to pickup an item
  * sets address, date, time
  */
-export default function SuggestForm({ crap }) {
+export default function SuggestForm({ listing }) {
   const { id } = useParams();
-  const { sendPostData } = useCrap();
+  const { sendPostData } = useListing();
 
   const [address, setAddress] = useState("");
   const [date, setDate] = useState(null);
@@ -23,14 +23,23 @@ export default function SuggestForm({ crap }) {
   function handleSubmit(ev) {
     ev.preventDefault();
 
-    const formData = new FormData();
-    formData.append("address", address);
-    formData.append("date", date);
-    formData.append("time", time);
-    sendPostData(id, formData, action);
+    if (!address || address.trim().length < 3) {
+      alert("You need to provide Address");
+    } else if (!date) {
+      alert("You need to pick a date");
+    } else if (!time) {
+      alert("You need to select time");
+    } else {
+      const formData = new FormData();
+      formData.append("address", address);
+      formData.append("date", date.toISOString());
+      formData.append("time", time);
 
-    for (let [key, value] of formData.entries()) {
-      console.log(`${key}:`, value);
+      sendPostData(id, formData, action);
+
+      for (let [key, value] of formData.entries()) {
+        console.log(`${key}:`, value);
+      }
     }
   }
 
@@ -46,6 +55,7 @@ export default function SuggestForm({ crap }) {
             value={address}
             onChange={(e) => setAddress(e.target.value)}
             className={styles.input}
+            required
           />
         </label>
 
@@ -58,6 +68,7 @@ export default function SuggestForm({ crap }) {
               console.log("user selected", formatted.format("YYYY-MM-DD"));
               setDate(formatted);
             }}
+            required
           />
         </label>
 
@@ -70,9 +81,10 @@ export default function SuggestForm({ crap }) {
             value={time}
             onChange={(e) => setTime(e.target.value)}
             className={styles.input}
+            required
           />
         </label>
-        <StateBtn crap={crap} onActionChange={setAction} />
+        <StateBtn listing={listing} onActionChange={setAction} />
       </form>
     </>
   );

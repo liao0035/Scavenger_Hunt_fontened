@@ -2,40 +2,40 @@ import styles from "./mine.module.css";
 import { useEffect } from "react";
 // provider
 import { useAuth } from "../context/auth.context";
-import { useCrap } from "../context/crap.provider";
+import { useListing } from "../context/listing.provider";
 
 // component
-import CrapCard from "../components/crapcard";
+import ListingCard from "../components/listingcard";
 import Loader from "../components/loader";
 
 export default function Mine() {
-  const { loading, fetchMineCrap, myCrapList } = useCrap();
+  const { loading, fetchMineListing, myListingList } = useListing();
   const { user, token } = useAuth();
 
   useEffect(() => {
-    fetchMineCrap();
+    fetchMineListing();
   }, [token]);
 
   useEffect(() => {
-    console.log("myCrapList：", myCrapList);
-  }, [myCrapList]);
+    console.log("myListingList：", myListingList);
+  }, [myListingList]);
 
   return (
     <>
       <section>
-        <h2 className={styles.h2}>{user.name}'s Crap</h2>
+        <h2 className={styles.h2}>{user.name}'s Listings</h2>
         {loading && <Loader />}
-        {!loading && Object.entries(myCrapList).length === 0 && (
-          <p>You have no crap!</p>
+        {!loading && Object.entries(myListingList).length === 0 && (
+          <h3 className={styles.msg}>You have no listing!</h3>
         )}
 
-        {Object.entries(myCrapList).map(([status, craps]) => (
+        {Object.entries(myListingList).map(([status, listings]) => (
           <>
             <h3 className={styles.statusGroup}>{status}</h3>
             <ul key={status} className={styles.cardList}>
-              {craps.map((crap) => (
+              {listings.map((listing) => (
                 <li className={styles.cardItem}>
-                  <CrapCard key={crap.id} crap={crap} />
+                  <ListingCard key={listing.id} listing={listing} />
                 </li>
               ))}
             </ul>

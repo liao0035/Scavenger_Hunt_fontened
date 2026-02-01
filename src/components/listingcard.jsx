@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import styles from "./crapcard.module.css";
+import styles from "./listingcard.module.css";
 import { NavLink } from "react-router-dom";
 import { useParams } from "react-router-dom";
 // Context
@@ -8,31 +8,29 @@ import { useAuth } from "../context/auth.context";
 import StateBtn from "./statebtn";
 import SuggestForm from "./suggestform";
 
-/** Component for a single crap card */
-export default function CrapCard({ crap }) {
+/** Component for a single listing card */
+export default function ListingCard({ listing }) {
   const { user } = useAuth();
   const { id } = useParams();
-  const isOwner = Boolean(crap.owner?._id === user.id);
+  const isOwner = Boolean(listing.owner?._id === user.id);
   let msg;
 
-  // checks to see if crap belongs to buyer or seller
-  isOwner
-    ? (msg = `${user.name}'s list!!!`)
-    : (msg = "This is NOT your list!!!");
+  // checks to see if listing belongs to buyer or seller
+  isOwner ? (msg = `It is Your list!!!`) : (msg = `This is ${user.name} list.`);
 
   return !id ? (
-    <NavLink to={`/crap/${crap._id}`}>
+    <NavLink to={`/listing/${listing._id}`}>
       <div className={styles.card}>
         <div className={styles.img}>
-          <img src={crap.images[0]} />
+          <img src={listing.images[0]} />
         </div>
         <div className={styles.cardInfo}>
-          <h3 className={styles.title}>{crap.title}</h3>
+          <h2 className={styles.title}>{listing.title}</h2>
           <p className={styles.cardHeading}>
-            <span>Description:</span> {crap.description}
+            <span>Description:</span> {listing.description}
           </p>
           <p className={styles.cardHeading}>
-            <span>Status:</span> {crap.status}
+            <span>Status:</span> {listing.status}
           </p>
           <p className={styles.msg}>{msg}</p>
         </div>
@@ -41,37 +39,37 @@ export default function CrapCard({ crap }) {
   ) : (
     <div className={styles.card}>
       <div className={styles.img}>
-        <img src={crap.images[0]} />
+        <img src={listing.images[0]} />
       </div>
 
       <div className={styles.cardInfo}>
-        <h3 className={styles.title}>{crap.title}</h3>
+        <h2 className={styles.title}>{listing.title}</h2>
         <p className={styles.cardHeading}>
-          <span>Description:</span> {crap.description}
+          <span>Description:</span> {listing.description}
         </p>
         <p className={styles.cardHeading}>
-          <span>Status:</span> {crap.status}
+          <span>Status:</span> {listing.status}
         </p>
         <p className={styles.msg}>{msg}</p>
 
-        {crap.status === "SCHEDULED" && (
+        {listing.status === "SCHEDULED" && (
           <div className={styles.scheduleBox}>
             <p>
-              <strong>Pickup Address:</strong> {crap.suggestion.address}
+              <strong>Pick up Address:</strong> {listing.suggestion.address}
             </p>
             <p>
               <strong>Date:</strong>{" "}
-              {dayjs(crap.suggestion.date).format("YYYY-MM-DD")}
+              {dayjs(listing.suggestion.date).format("YYYY-MM-DD")}
             </p>
             <p>
-              <strong>Time:</strong> {crap.suggestion.time}
+              <strong>Time:</strong> {listing.suggestion.time}
             </p>
           </div>
         )}
-        {crap.status === "INTERESTED" && isOwner ? (
-          <SuggestForm crap={crap} />
+        {listing.status === "INTERESTED" && isOwner ? (
+          <SuggestForm listing={listing} />
         ) : (
-          <StateBtn crap={crap} />
+          <StateBtn listing={listing} />
         )}
       </div>
     </div>

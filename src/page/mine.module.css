@@ -1,14 +1,14 @@
 .h2 {
   text-align: center;
   margin-block: 1.5rem;
+  color: var(--color-secondary--dark);
 }
 
 .statusGroup {
-  text-align: center;
-  font-size: 1.5rem;
+  text-align: left;
   color: var(--color-primary);
-  background-color: var(--color-secondary--light);
-  /* border-radius: 1.5rem; */
+  /* background-color: var(--color-secondary--light); */
+  border-radius: 1rem;
   margin: 2rem;
   padding: 0.5rem;
 }
@@ -16,6 +16,7 @@
 .cardList {
   display: flex;
   flex-direction: column;
+
   margin: 2rem;
   gap: 1.5rem;
 
@@ -35,12 +36,17 @@
   display: flex;
   flex: 1 1 15rem;
   container-type: inline-size;
-
   transition: transform 0.3s ease;
 
   &:where(:hover, :focus-visible) {
     transform: translateX(-1rem);
   }
 
+
+}
+
+.msg {
+  text-align: center;
+  margin-block: 2rem;
 
 }

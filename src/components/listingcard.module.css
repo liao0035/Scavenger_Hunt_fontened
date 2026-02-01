@@ -30,25 +30,21 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: center;
-
-    flex-grow: 2;
+    /* flex-grow: 2; */
     padding: 2rem;
     border-radius: 0 0 1rem 1rem;
     background-color: #fff;
 
     .title {
-        color: var(--color-text--dark);
-        text-align: center;
-        background-color: var(--color-accent);
-        padding: 0.5rem;
-
+        color: var(--color-secondary--dark);
     }
 
     .cardHeading span {
         font-weight: 700;
     }
 
-    .msg {}
+
+
 }
 
 @container(min-width: 30em) {
