@@ -11,7 +11,7 @@ export default function OfferForm() {
   // makes sure that when we're in development, we're using the local backend
   const BASE_URL = import.meta.env.DEV
     ? "http://localhost:4000"
-    : "https://w2025-final-backend-58fl.onrender.com";
+    : "https://scavenger-hunt-backend-r6iw.onrender.com";
 
   const { token, location, getMyLocation } = useAuth();
   const [data, setData] = useState({ title: "", description: "" });
