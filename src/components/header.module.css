@@ -4,12 +4,14 @@
   color: var(--color-primary);
   container-type: inline-size;
 
+
   &.loggedOut {
     @media only screen and (min-width: 45em) {
       padding-block-start: 1.5rem;
-
     }
   }
+
+
 
   .container {
     display: flex;
@@ -25,7 +27,6 @@
       flex-direction: row;
       padding-block-start: unset;
       justify-content: space-between;
-      margin-inline: 2rem;
     }
 
   }
@@ -45,10 +46,6 @@
     font-size: clamp(1.8rem, 6cqw, 2rem);
     white-space: nowrap;
 
-    @media only screen and (min-width:45em) {
-      /* white-space: wrap; */
-    }
-
   }
 
   p.logo {
@@ -58,7 +55,6 @@
     white-space: nowrap;
 
     @media only screen and (min-width:45em) {
-
       text-align: center;
     }
   }
@@ -66,7 +62,7 @@
   .navBar {
     width: 100%;
 
-    @media only screen and (min-width:45rem) {
+    @media only screen and (min-width:65rem) {
       width: auto;
     }
 
@@ -83,12 +79,11 @@
 
     &:where(:hover, :focus-visible) {
       background-color: var(--color-secondary--light);
-      color: var(--color-text--dark);
+      color: var(--color-accent);
     }
 
     @media only screen and (min-width:45rem) {
       padding-block: 2.5rem;
-      white-space: wrap;
 
     }
   }
@@ -96,8 +91,14 @@
   .linkGroup {
     @media only screen and (min-width: 45em) {
       display: flex;
+      justify-content: space-between;
+      align-items: center;
       gap: .5rem;
+    }
 
+    @media only screen and (min-width: 65em) {
+      justify-content: center;
+      margin-inline: unset;
     }
   }
 
@@ -119,10 +120,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
   }
 
 
   @media only screen and (min-width: 45em) {
+    margin-inline: 2rem;
+
     img.logo {
       width: 50%;
       height: 50%;

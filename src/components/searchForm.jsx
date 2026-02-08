@@ -4,7 +4,7 @@ import styles from "./searchForm.module.css";
 import { useListing } from "../context/listing.provider.jsx";
 import { useAuth } from "../context/auth.context";
 // Components
-import ListingCard from "../components/listingcard";
+import ListingCard from "./listingcard.jsx";
 // icon
 import { FiSearch } from "react-icons/fi";
 

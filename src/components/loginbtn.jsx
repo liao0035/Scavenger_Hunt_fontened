@@ -27,7 +27,6 @@ export default function LoginBtn({ className }) {
 
   return (
     <>
-      {/* logic to show login vs logout depending on user's logged in status */}
       <NavLink
         className={className}
         onClick={isLogin ? handleLogout : handleLogIn}

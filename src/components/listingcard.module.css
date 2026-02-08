@@ -1,27 +1,21 @@
 a {
-    display: flex;
+    display: flex
 }
 
 .card {
     display: grid;
-    /* flex-direction: column; */
-    /* width: 100%; */
     border-radius: 1rem;
     box-shadow: var(--shadow);
     overflow: hidden;
-
 }
 
 .img {
     display: flex;
 
     img {
-        width: 100%;
-        aspect-ratio: 1/1;
+        aspect-ratio: auto;
         object-fit: cover;
-        /* border-radius: 1rem 1rem 0 0; */
         box-shadow: var(--shadow);
-
     }
 
 }
@@ -30,10 +24,9 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* flex-grow: 2; */
     padding: 2rem;
-    border-radius: 0 0 1rem 1rem;
     background-color: #fff;
+    /* border-radius: 0 0 1rem 1rem; */
 
     .title {
         color: var(--color-secondary--dark);
@@ -54,14 +47,34 @@ a {
 
     .img {
         img {
-            aspect-ratio: 1/1;
-            height: 100%;
-            border-radius: 1rem 0 0 1rem;
+            aspect-ratio: 2/3;
         }
     }
 
     .cardInfo {
         border-radius: 0 1rem 1rem 0;
+    }
+
+}
+
+@container(min-width: 60em) {
+    .card {
+        grid-template-columns: 2fr 2fr;
+    }
+
+    .img {
+
+        img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            /* object-fit: scale-down; */
+            /* border-radius: 1rem; */
+
+        }
+    }
+
+    .cardInfo {
+        background-color: pink;
     }
 
 }
