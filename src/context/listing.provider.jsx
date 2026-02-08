@@ -16,7 +16,7 @@ function ListingProvider({ children }) {
 
   const BASE_URL = import.meta.env.DEV
     ? "http://localhost:4000"
-    : "https://w2025-final-backend-58fl.onrender.com";
+    : "https://scavenger-hunt-backend-r6iw.onrender.com";
 
   // Search Listing (all, or by query)
   function fetchAllListing() {

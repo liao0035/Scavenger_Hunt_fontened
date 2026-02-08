@@ -9,7 +9,7 @@ export default function LoginBtn({ className }) {
 
   const BASE_URL = import.meta.env.DEV
     ? "http://localhost:4000"
-    : "https://w2025-final-backend-58fl.onrender.com"; //Remi's backend
+    : "https://scavenger-hunt-backend-r6iw.onrender.com"; //Remi's backend
 
   console.log("BASE_URL", BASE_URL);
 
