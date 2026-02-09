@@ -9,20 +9,19 @@
     container-type: inline-size;
 
 
-    @media only screen and (min-width:45em) {
-        max-width: 40%;
-
-    }
 
     h2 {
         margin-block-end: 2rem;
         text-align: center;
         /* white-space: nowrap; */
     }
+
+
 }
 
 .form {
     display: flex;
+    /* display: grid; */
     flex-direction: column;
     gap: 1rem;
     container-type: inline-size;
@@ -47,8 +46,24 @@
         /* font-family: inherit; */
     }
 
+
+
+
+
 }
 
+.btnGroup {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+
+    @media only screen and (min-width:55em) {
+        flex-direction: row;
+        justify-content: flex-end;
+
+    }
+
+}
 
 .hiddenInput {
     display: none;

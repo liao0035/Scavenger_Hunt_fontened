@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 // Context
 import { useAuth } from "../context/auth.context.jsx";
 // img
+import logoOnly from "../assets/logoOnly.svg";
 import { blue } from "@mui/material/colors";
 
 /** Offer form component */
@@ -114,23 +115,25 @@ export default function OfferForm() {
             }
           ></textarea>
 
-          <label htmlFor="image" className="btn">
-            Upload image
-          </label>
+          <div className={styles.btnGroup}>
+            <label htmlFor="image" className="btn">
+              Upload image
+            </label>
+            <input
+              required
+              type="file"
+              name="images"
+              id="image"
+              accept="image/*"
+              multiple
+              onChange={handleFileChange}
+              className={styles.hiddenInput}
+            />
 
-          <input
-            required
-            type="file"
-            name="images"
-            id="image"
-            accept="image/*"
-            multiple
-            onChange={handleFileChange}
-            className={styles.hiddenInput}
-          />
-          <button disabled={isUploading}>
-            {isUploading ? "Uploading..." : "Offer your list"}
-          </button>
+            <button disabled={isUploading}>
+              {isUploading ? "Uploading..." : "Offer your list"}
+            </button>
+          </div>
 
           {files.length > 0 && (
             <ul>
