@@ -40,7 +40,7 @@ a {
 
 }
 
-@container(min-width: 30em) {
+@container(min-width: 20em) {
     .card {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -57,24 +57,27 @@ a {
 
 }
 
+
 @container(min-width: 60em) {
     .card {
-        grid-template-columns: 2fr 2fr;
+        grid-template-columns: 2fr 1fr;
     }
 
     .img {
 
         img {
-            width: 100%;
-            aspect-ratio: 1/1;
-            /* object-fit: scale-down; */
-            /* border-radius: 1rem; */
-
+            width: 100vi;
+            height: auto;
+            max-height: 80vh;
+            aspect-ratio: auto;
+            object-fit: cover;
         }
     }
 
     .cardInfo {
-        background-color: pink;
+        border-radius: unset;
+
+
     }
 
 }

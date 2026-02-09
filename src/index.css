@@ -194,7 +194,7 @@ button,
   border: .125rem solid var(--color-primary--light);
   border-radius: 1rem;
   color: var(--color-text--white);
-  /* margin-block-end: 1rem; */
+
 
 
 
@@ -203,4 +203,6 @@ button,
     border-color: var(--color-primary--dark);
     color: var(--color-text--white);
   }
+
+
 }

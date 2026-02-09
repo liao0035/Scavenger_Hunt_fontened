@@ -1,18 +1,18 @@
 .cardList {
-  /* display: flex; */
   margin: 2rem;
   gap: 1.5rem;
 
   @media only screen and (min-width:45rem) {
     display: grid;
-    grid-template-columns: repeat(2, 2fr);
+    grid-template-columns: repeat(2, 1fr);
 
   }
 
-  @media only screen and (min-width:60rem) {
-    display: grid;
-    grid-template-columns: repeat(2, 2fr);
+  @media only screen and (min-width:70rem) {
+    grid-template-columns: repeat(3, 1fr);
   }
+
+
 }
 
 .cardItem {
@@ -20,7 +20,6 @@
   margin-block-end: 2rem;
   flex: 1 1 15rem;
   container-type: inline-size;
-
   transition: transform 0.3s ease;
 
   &:where(:hover, :focus-visible) {

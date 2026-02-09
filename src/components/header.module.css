@@ -70,21 +70,21 @@
 
   .link {
     color: var(--color-primary);
-    padding-block: .5rem;
-    padding-inline: clamp(0.5rem, 2cqi, 1.2rem);
+    padding-block: .8rem;
+    padding-inline: clamp(0.6rem, 2cqi, 1.2rem);
     display: block;
     text-align: center;
-    font-size: clamp(1.125rem, 2cqw, 1.2rem);
+    font-size: clamp(1rem, 2cqw, 1.35rem);
     white-space: nowrap;
 
     &:where(:hover, :focus-visible) {
       background-color: var(--color-secondary--light);
       color: var(--color-accent);
+
     }
 
     @media only screen and (min-width:45rem) {
       padding-block: 2.5rem;
-
     }
   }
 
@@ -94,11 +94,6 @@
       justify-content: space-between;
       align-items: center;
       gap: .5rem;
-    }
-
-    @media only screen and (min-width: 65em) {
-      justify-content: center;
-      margin-inline: unset;
     }
   }
 
