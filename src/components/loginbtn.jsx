@@ -1,6 +1,10 @@
 import { NavLink, useNavigate } from "react-router";
 // Context
 import { useAuth } from "../context/auth.context";
+// icon
+import { AiFillGoogleCircle } from "react-icons/ai";
+// style
+import styles from "./loginbtn.module.css";
 
 /** Login/logout button component */
 export default function LoginBtn({ className }) {
@@ -28,10 +32,17 @@ export default function LoginBtn({ className }) {
   return (
     <>
       <NavLink
-        className={className}
+        className={`${className} ${styles.googleLoginGroup}`}
         onClick={isLogin ? handleLogout : handleLogIn}
       >
-        {isLogin ? "Logout" : "Login"}
+        {isLogin ? (
+          "Logout"
+        ) : (
+          <>
+            {" "}
+            <AiFillGoogleCircle className={styles.googleIcon} /> Login
+          </>
+        )}
       </NavLink>
     </>
   );
