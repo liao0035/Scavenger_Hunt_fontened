@@ -1,9 +1,9 @@
 import dayjs from "dayjs";
 import styles from "./listingcard.module.css";
-import { NavLink } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 // Context
 import { useAuth } from "../context/auth.context";
+import { useListing } from "../context/listing.provider.jsx";
 // Components
 import StateBtn from "./statebtn";
 import SuggestForm from "./suggestform";
@@ -11,6 +11,7 @@ import SuggestForm from "./suggestform";
 /** Component for a single listing card */
 export default function ListingCard({ listing }) {
   const { user } = useAuth();
+  const { deleteListing } = useListing();
   const { id } = useParams();
   const isOwner = Boolean(listing.owner?._id === user.id);
   let msg;
@@ -33,6 +34,17 @@ export default function ListingCard({ listing }) {
             <span>Status:</span> {listing.status}
           </p>
           <p className={styles.msg}>{msg}</p>
+          {isOwner && (
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                deleteListing(listing);
+              }}
+            >
+              Delete
+            </button>
+          )}
         </div>
       </div>
     </NavLink>
@@ -41,7 +53,6 @@ export default function ListingCard({ listing }) {
       <div className={styles.img}>
         <img src={listing.images[0]} />
       </div>
-
       <div className={styles.cardInfo}>
         <h2 className={styles.title}>{listing.title}</h2>
         <p className={styles.cardHeading}>
@@ -70,6 +81,17 @@ export default function ListingCard({ listing }) {
           <SuggestForm listing={listing} />
         ) : (
           <StateBtn listing={listing} />
+        )}
+        {isOwner && (
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              deleteListing(listing);
+            }}
+          >
+            Delete
+          </button>
         )}
       </div>
     </div>

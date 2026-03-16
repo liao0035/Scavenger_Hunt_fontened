@@ -4,7 +4,7 @@ import { useAuth } from "./auth.context.jsx";
 const ListingContext = createContext();
 
 function ListingProvider({ children }) {
-  const { token } = useAuth();
+  const { token, user } = useAuth();
   const [query, setQuery] = useState("");
   const [allData, setAllData] = useState([]);
   const [mineData, setMineData] = useState([]);
@@ -132,6 +132,31 @@ function ListingProvider({ children }) {
     setQuery(newQuery);
   }
 
+  // deletes listing, only user == listing owner can delete
+  function deleteListing(item) {
+    if (!token || !user) return;
+    if (!window.confirm(`Are you sure you want to delete ${item.title}?`))
+      return;
+    setLoading(true);
+    fetch(`${BASE_URL}/api/listing/${item._id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to delete listing");
+        setLoading(false);
+        fetchMineListing(); // Refresh the listing data
+        fetchAllListing();
+      })
+      .catch((err) => {
+        console.error("Failed to delete listing.", err);
+        setError(err);
+        setLoading(false);
+      });
+  }
+
   // Creates section for my listing page
   function createSections(arr) {
     let section = arr.reduce((existing, listing) => {
@@ -156,6 +181,7 @@ function ListingProvider({ children }) {
     fetchAllListing,
     fetchMineListing,
     fetchListingById,
+    deleteListing,
     updateQuery,
     createSections,
     sendPostData,

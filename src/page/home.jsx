@@ -1,4 +1,3 @@
-import SearchForm from "../components/searchForm";
 // context
 import { useListing } from "../context/listing.provider";
 // Components
@@ -22,7 +21,6 @@ export default function Home() {
           ))}
         </ul>
       )}
-      {/* <SearchForm /> */}
     </div>
   );
 }
