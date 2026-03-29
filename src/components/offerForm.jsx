@@ -3,8 +3,6 @@ import styles from "./offerForm.module.css";
 import { useState, useEffect } from "react";
 // Context
 import { useAuth } from "../context/auth.context.jsx";
-// img
-import logoOnly from "../assets/logoOnly.svg";
 import { blue } from "@mui/material/colors";
 
 /** Offer form component */
