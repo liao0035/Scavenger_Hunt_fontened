@@ -33,6 +33,10 @@ export default function OfferForm() {
 
   const handleSubmit = async (ev) => {
     ev.preventDefault();
+    if (files.length === 0) {
+      alert("Please upload at least one image.");
+      return;
+    }
     const formattedName =
       data.title.charAt(0).toUpperCase() + data.title.slice(1).toLowerCase();
     setIsUploading(true);

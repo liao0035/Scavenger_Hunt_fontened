@@ -14,6 +14,7 @@ export default function ListingCard({ listing }) {
   const { deleteListing } = useListing();
   const { id } = useParams();
   const isOwner = Boolean(listing.owner?._id === user.id);
+  console.log("current user:", user?.name);
   let msg;
 
   // checks to see if listing belongs to buyer or seller
