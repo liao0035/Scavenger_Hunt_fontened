@@ -124,7 +124,6 @@ export default function OfferForm() {
               Upload image
             </label>
             <input
-              required
               type="file"
               name="images"
               id="image"
