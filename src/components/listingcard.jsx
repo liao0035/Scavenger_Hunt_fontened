@@ -51,9 +51,8 @@ export default function ListingCard({ listing }) {
     </NavLink>
   ) : (
     <div className={styles.card}>
-      <div className={styles.img}>
-        <img src={listing.images[0]} />
-      </div>
+      <img className={styles.img} src={listing.images[0]} />
+
       <div className={styles.cardInfo}>
         <h2 className={styles.title}>{listing.title}</h2>
         <p className={styles.cardHeading}>
@@ -78,22 +77,24 @@ export default function ListingCard({ listing }) {
             </p>
           </div>
         )}
-        {listing.status === "INTERESTED" && isOwner ? (
-          <SuggestForm listing={listing} />
-        ) : (
-          <StateBtn listing={listing} />
-        )}
-        {isOwner && (
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              deleteListing(listing);
-            }}
-          >
-            Delete
-          </button>
-        )}
+        <div className={styles.btnGroup}>
+          {listing.status === "INTERESTED" && isOwner ? (
+            <SuggestForm listing={listing} />
+          ) : (
+            <StateBtn listing={listing} />
+          )}
+          {isOwner && (
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                deleteListing(listing);
+              }}
+            >
+              Delete
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );

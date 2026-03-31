@@ -36,18 +36,24 @@ a {
         font-weight: 700;
     }
 
+}
+
+.btnGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 
 
 }
 
 @container(min-width: 20em) {
     .card {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(1, 1fr);
     }
 
     .img {
         img {
-            aspect-ratio: 2/3;
+            aspect-ratio: 3/2;
         }
     }
 
@@ -57,16 +63,24 @@ a {
 
 }
 
+@container(min-width: 40em) {
+    .card {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+}
+
 
 @container(min-width: 60em) {
-    .card {
+    /* .card {
         grid-template-columns: 2fr 1fr;
-    }
+    } */
 
     .img {
 
         img {
-            width: 100vi;
+            width: 100vw;
             height: auto;
             max-height: 80vh;
             aspect-ratio: auto;
