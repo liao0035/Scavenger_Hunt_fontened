@@ -10,15 +10,19 @@ import SuggestForm from "./suggestform";
 
 /** Component for a single listing card */
 export default function ListingCard({ listing }) {
+  console.log("Listing Object Data:", listing);
   const { user } = useAuth();
   const { deleteListing } = useListing();
   const { id } = useParams();
   const isOwner = Boolean(listing.owner?._id === user.id);
-  console.log("current user:", user?.name);
+  const ownerName = listing.owner?.name || "the seller";
+
   let msg;
 
   // checks to see if listing belongs to buyer or seller
-  isOwner ? (msg = `It is Your list!!!`) : (msg = `This is ${user.name} list.`);
+  isOwner
+    ? (msg = `It is Your list!!!`)
+    : (msg = `This is ${ownerName}'s list.`);
 
   return !id ? (
     <NavLink to={`/listing/${listing._id}`}>
