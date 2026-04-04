@@ -29,7 +29,7 @@
     container-type: inline-size;
 
 
-    label {
+    .label {
         text-align: left;
         color: var(--color-secondary--dark);
         font-weight: 700;

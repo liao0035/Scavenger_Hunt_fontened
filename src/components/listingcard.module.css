@@ -7,6 +7,7 @@ a {
     border-radius: 1rem;
     box-shadow: var(--shadow);
     overflow: hidden;
+    color: var(--color-card-text)
 }
 
 .img {
@@ -25,11 +26,10 @@ a {
     flex-direction: column;
     justify-content: center;
     padding: 2rem;
-    background-color: #fff;
-
+    background-color: var(--color-card-bg);
 
     .title {
-        color: var(--color-secondary--dark);
+        color: var(--color-card-text);
     }
 
     .cardHeading span {

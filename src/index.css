@@ -8,10 +8,17 @@
   --color-text--dark: light-dark(#26211C, #26211C);
   --color-grey: light-dark(#4848488e, #b0b0b08e);
 
+
+  /* new color system */
   --color-bg: light-dark(#fdfdfd, #0f1d35);
+
   --color-input-bg: light-dark(#fff, #696969);
   --color-input-text: light-dark(#3d3d3d, #ffff);
+
   --color-form-bg: light-dark(#fff, #2e3745);
+
+  --color-card-bg: light-dark(#0f1d35, #2e3745);
+  --color-card-text: light-dark(#f1e8da, #f1e8da);
 
 
   --color-primary: light-dark(#0f1d35, #0f1d35);
@@ -19,11 +26,15 @@
   --color-primary--dark: light-dark(#05152E, #020a16);
 
 
+  /* logo */
   --color-secondary: light-dark(#dcc5a0, #e2d1b6);
+  --color-secondary-logo-hover: light-dark(#f1e8da, #f1e8da);
   /* form-bg, h2 */
-  --color-secondary--light: light-dark(#f1e8da, #9985689e);
+  --color-secondary--light: light-dark(#f1e8da, #62543e);
+
+
   --color-secondary--dark: light-dark(#8C6A3B, #dcc5a0);
-  --color-accent: light-dark(#6fa35b, #bed0b8);
+  --color-accent: light-dark(#6fa35b, #8cb37d);
 
   /* 標準化屬性 */
   --transition: .2s;

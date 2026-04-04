@@ -82,7 +82,9 @@ export default function OfferForm() {
       <div className={styles.formControl}>
         <h2>Create new Listing</h2>
         <form className={styles.form} onSubmit={handleSubmit}>
-          <label htmlFor="title">Name:</label>
+          <label className={styles.label} htmlFor="title">
+            Name:
+          </label>
           <input
             required
             minLength={3}
@@ -101,7 +103,9 @@ export default function OfferForm() {
             }
           />
           {/* as the user types in the input, we set the value of the specific input in setData */}
-          <label htmlFor="description">Description:</label>
+          <label className={styles.label} htmlFor="description">
+            Description:
+          </label>
           <textarea
             required
             minLength={3}
