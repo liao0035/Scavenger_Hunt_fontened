@@ -36,9 +36,8 @@
   --color-secondary--dark: light-dark(#8C6A3B, #dcc5a0);
   --color-accent: light-dark(#6fa35b, #8cb37d);
 
-  /* 標準化屬性 */
+
   --transition: .2s;
-  /* 深色模式的陰影需要更重、更深 */
   --shadow: light-dark(0 0.25rem 0.75rem #0004, 0 0.25rem 1rem rgba(236, 236, 236, 0.5));
   --shadow--large: light-dark(0 0.5rem 1.5rem #0004, 0 0.5rem 2rem rgba(208, 208, 208, 0.8));
   --shadow--subtle: light-dark(0 0.125rem 0.5rem #0002, 0 0.125rem 0.5rem rgba(168, 168, 168, 0.4));
