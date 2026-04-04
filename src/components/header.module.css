@@ -7,7 +7,7 @@
 
   &.loggedOut {
     @media only screen and (min-width: 45em) {
-      padding-block-start: 1.5rem;
+      padding-block: 1.5rem;
     }
   }
 
@@ -17,13 +17,13 @@
     gap: 1rem;
     align-items: center;
     justify-content: center;
-    padding-block-start: 1.5rem;
+    padding-block-start: 1rem;
     container-type: inline-size;
 
 
     @media only screen and (min-width: 65em) {
       flex-direction: row;
-      padding-block-start: unset;
+      padding-block: unset;
       justify-content: space-between;
 
     }
