@@ -23,7 +23,7 @@
   /* form-bg, h2 */
   --color-secondary--light: light-dark(#f1e8da, #9985689e);
   --color-secondary--dark: light-dark(#8C6A3B, #dcc5a0);
-  --color-accent: light-dark(#6fa35b, #6fa35b);
+  --color-accent: light-dark(#6fa35b, #bed0b8);
 
   /* 標準化屬性 */
   --transition: .2s;

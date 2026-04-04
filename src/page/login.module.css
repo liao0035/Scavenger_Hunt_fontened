@@ -10,3 +10,10 @@
   min-width: 4rem;
 
 }
+
+.msg {
+  color: var(--color-secondary--dark);
+  justify-items: center;
+  align-items: center;
+  font-weight: 600;
+}
