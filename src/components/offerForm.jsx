@@ -140,7 +140,9 @@ export default function OfferForm() {
             <ul>
               {files.map((file, idx) => (
                 <li key={idx}>
-                  <strong>{file.name}</strong> is attached
+                  <strong className={styles.fileName}>
+                    {file.name} is attached
+                  </strong>
                 </li>
               ))}
             </ul>

@@ -1,20 +1,41 @@
 /* @import 'tailwindcss'; */
 /* CSS Reset */
 :root {
-  --color-text--white: #fff;
-  --color-text--light: #FFF;
-  --color-text--dark: #26211C;
-  --color-grey: #4848488e;
+  color-scheme: light dark;
 
-  --color-primary: #1E2E47;
-  --color-primary--light: #354359;
-  --color-primary--dark: #05152E;
+  --color-text--white: light-dark(#fff, #e0e0e0);
+  --color-text--light: light-dark(#FFF, #f0f0f0);
+  --color-text--dark: light-dark(#26211C, #26211C);
+  --color-grey: light-dark(#4848488e, #b0b0b08e);
 
-  --color-secondary: #dcc5a0;
-  --color-secondary--light: #f1e8da;
-  --color-secondary--dark: #8C6A3B;
+  --color-bg: light-dark(#fdfdfd, #0f1d35);
+  --color-input-bg: light-dark(#fff, #696969);
+  --color-input-text: light-dark(#3d3d3d, #ffff);
+  --color-form-bg: light-dark(#fff, #2e3745);
 
-  --color-accent: #8EA087;
+
+  --color-primary: light-dark(#0f1d35, #0f1d35);
+  --color-primary--light: light-dark(#354359, #1E2E47);
+  --color-primary--dark: light-dark(#05152E, #020a16);
+
+
+  --color-secondary: light-dark(#dcc5a0, #e2d1b6);
+  /* form-bg, h2 */
+  --color-secondary--light: light-dark(#f1e8da, #9985689e);
+  --color-secondary--dark: light-dark(#8C6A3B, #dcc5a0);
+  --color-accent: light-dark(#6fa35b, #6fa35b);
+
+  /* 標準化屬性 */
+  --transition: .2s;
+  /* 深色模式的陰影需要更重、更深 */
+  --shadow: light-dark(0 0.25rem 0.75rem #0004, 0 0.25rem 1rem rgba(236, 236, 236, 0.5));
+  --shadow--large: light-dark(0 0.5rem 1.5rem #0004, 0 0.5rem 2rem rgba(208, 208, 208, 0.8));
+  --shadow--subtle: light-dark(0 0.125rem 0.5rem #0002, 0 0.125rem 0.5rem rgba(168, 168, 168, 0.4));
+  --radius: 0.5em;
+
+
+
+
 
   /* Fonts */
   --font-primary: "Playfair";
@@ -119,12 +140,15 @@ li {
 body {
   min-height: 100vh;
   margin: 0;
+  background-color: var(--color-bg);
+  color: var(--color-text--dark);
+  transition: background-color var(--transition), color var(--transition);
 }
 
 /* A elements that don't have a class get default styles */
 a {
   text-decoration-skip-ink: auto;
-  color: var(--color-primary);
+  color: var(--color-secondary);
   text-decoration: none;
 }
 
@@ -137,6 +161,12 @@ textarea,
 input {
   font-family: inherit;
   font-size: clamp(1rem, 5cqw, 1.2rem);
+  color: var(--color-input-text);
+
+  &::placeholder {
+    color: var(--color-input-text);
+  }
+
 }
 
 /* Make images easier to work with */

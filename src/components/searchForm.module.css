@@ -27,7 +27,7 @@
   /* here is real border */
   border-radius: .8rem;
   padding: .5rem;
-  background-color: white;
+  background-color: var(--color-input-bg);
   cursor: text;
 
 }

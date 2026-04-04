@@ -60,6 +60,7 @@ createRoot(document.getElementById("root")).render(
               />
               {/* public route */}
               <Route path="login" element={<Login />} />
+
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>
