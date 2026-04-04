@@ -3,14 +3,12 @@ import styles from "./searchForm.module.css";
 // Context
 import { useListing } from "../context/listing.provider.jsx";
 import { useAuth } from "../context/auth.context";
-// Components
-import ListingCard from "./listingcard.jsx";
 // icon
 import { FiSearch } from "react-icons/fi";
 
 /** Search form component */
 export default function SearchForm() {
-  const { fetchAllListing, updateQuery, allData, hasSearch } = useListing();
+  const { fetchAllListing, updateQuery } = useListing();
   const { user } = useAuth();
 
   useEffect(() => {
