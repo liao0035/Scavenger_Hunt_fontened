@@ -36,6 +36,7 @@
     }
 
     input[type="text"] {
+
         background-color: var(--color-secondary--light);
         border-radius: .75rem;
         border: none;
@@ -44,10 +45,12 @@
     }
 
     textarea {
+
         background-color: var(--color-secondary--light);
         border-radius: .75rem;
         border: none;
         padding: 1rem;
+        resize: vertical;
 
     }
 
